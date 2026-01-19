@@ -1,8 +1,8 @@
 package models;
 
-public class Node {
+import java.util.Objects;
 
-    //este nodo tendra las cordenadas X y Y
+public class Node {
 
     private int ejeX;
     private int ejeY;
@@ -28,6 +28,18 @@ public class Node {
         this.ejeY = ejeY;
     }
 
-    
-    
+    // Estos metodos son vitales para que el sistema sepa identificar 
+    // si un nodo es igual a otro al momento de conectar
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Node node = (Node) o;
+        return ejeX == node.ejeX && ejeY == node.ejeY;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ejeX, ejeY);
+    }
 }
