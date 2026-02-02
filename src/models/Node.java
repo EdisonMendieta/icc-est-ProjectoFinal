@@ -28,8 +28,6 @@ public class Node {
         this.ejeY = ejeY;
     }
 
-    // Estos metodos son vitales para que el sistema sepa identificar 
-    // si un nodo es igual a otro al momento de conectar
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

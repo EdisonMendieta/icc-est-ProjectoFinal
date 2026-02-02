@@ -12,50 +12,61 @@ import javax.swing.JPanel;
 public class PanelControles extends JPanel {
 
     private JButton btnCrear;
-    private JButton btnEliminar;
     private JButton btnConectar;
+    private JButton btnInicio; // Nuevo
+    private JButton btnFin;    // Nuevo
+    private JButton btnBFS;    // Nuevo: Ejecutar Algoritmo
 
     public PanelControles() {
-        // Configuración del panel
-        setOpaque(false); // Hacemos false para pintar nuestro propio fondo redondeado
-        setLayout(new GridLayout(0, 1, 10, 10)); // Botones en columna
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Márgenes internos
+        setOpaque(false);
+        setLayout(new GridLayout(0, 1, 10, 10));
+        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // Inicializar botones
         btnCrear = new JButton("Crear Nodo");
         btnConectar = new JButton("Conectar Nodos");
-        btnEliminar = new JButton("Eliminar Nodo");
+        btnInicio = new JButton("Definir Inicio (A)");
+        btnFin = new JButton("Definir Destino (B)");
+        btnBFS = new JButton("▶ Ejecutar BFS");
 
-        // Estilizar botones (Opcional, para que se vean mejor)
         estilizarBoton(btnCrear);
         estilizarBoton(btnConectar);
-        estilizarBoton(btnEliminar);
+        estilizarBoton(btnInicio);
+        estilizarBoton(btnFin);
+        estilizarBoton(btnBFS);
+        
+        // Destacamos el botón de ejecutar
+        btnBFS.setBackground(new Color(100, 200, 100));
+        btnBFS.setForeground(Color.WHITE);
 
         add(btnCrear);
         add(btnConectar);
-        add(btnEliminar);
+        add(btnInicio);
+        add(btnFin);
+        add(btnBFS);
     }
 
     private void estilizarBoton(JButton btn) {
         btn.setFocusPainted(false);
-        btn.setBackground(new Color(245, 245, 245));
+        if (!btn.getText().contains("BFS")) {
+            btn.setBackground(new Color(245, 245, 245));
+            btn.setForeground(Color.BLACK);
+        }
         btn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
     }
 
-    // Dibujamos el fondo redondeado y semitransparente
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        
-        // Fondo negro con transparencia (Alfa 180)
-        g2.setColor(new Color(30, 30, 30, 180));
+        g2.setColor(new Color(30, 30, 30, 200));
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25);
-        
         super.paintComponent(g);
     }
 
+    // Getters
     public JButton getBtnCrear() { return btnCrear; }
-    public JButton getBtnEliminar() { return btnEliminar; }
     public JButton getBtnConectar() { return btnConectar; }
+    public JButton getBtnInicio() { return btnInicio; }
+    public JButton getBtnFin() { return btnFin; }
+    public JButton getBtnBFS() { return btnBFS; }
 }
