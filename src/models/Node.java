@@ -1,33 +1,33 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Node {
-
+public class Node implements Serializable {
+    
+    // necesario para guardar el archivo sin errores
+    private static final long serialVersionUID = 1L; 
+    
     private int ejeX;
     private int ejeY;
+    private String nombre; 
 
     public Node(int ejeX, int ejeY) {
         this.ejeX = ejeX;
         this.ejeY = ejeY;
+        // le ponemos un nombre automatico para identificarlo facil
+        this.nombre = "N" + System.currentTimeMillis() % 1000; 
     }
 
-    public int getEjeX() {
-        return ejeX;
-    }
+    public int getEjeX() { return ejeX; }
+    public void setEjeX(int ejeX) { this.ejeX = ejeX; }
 
-    public void setEjeX(int ejeX) {
-        this.ejeX = ejeX;
-    }
+    public int getEjeY() { return ejeY; }
+    public void setEjeY(int ejeY) { this.ejeY = ejeY; }
 
-    public int getEjeY() {
-        return ejeY;
-    }
+    public String getNombre() { return nombre; }
 
-    public void setEjeY(int ejeY) {
-        this.ejeY = ejeY;
-    }
-
+    // metodos para comparar nodos
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -40,4 +40,7 @@ public class Node {
     public int hashCode() {
         return Objects.hash(ejeX, ejeY);
     }
+    
+    @Override
+    public String toString() { return nombre; }
 }
